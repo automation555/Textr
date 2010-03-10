@@ -10,17 +10,14 @@ public class MatrixAnimater {
     private JTextArea textArea;
     private BufferTextArea bta;
     private JButton btnQuit;
-    private StringBuffer inputFile;
-    private StringBuffer outputFile;
+    private StringBuffer inputFile, outputFile;
     private CopyOnWriteArrayList<String> inputArray;
     private ArrayList<Character> chars;
     private ArrayList<RandomCharacters> rndChars;
     private Random generator;
-    private int threadCount;
-    private float announceCount;
     private String renderOutput;
-    private int width;
-    private int height;
+    private float announceCount;
+    private int width, height, threadCount;
     private boolean animating;
     
     public MatrixAnimater(BufferTextArea bta, JTextArea textArea, StringBuffer inputFile) {       
@@ -51,7 +48,7 @@ public class MatrixAnimater {
     public int height() { return height; }
     
     /**
-     * Prepares data for passing to threads, etc.
+     * Prepares data for passing to threads.
      */
     private void createArrays() {
         chars = new ArrayList<Character>();
@@ -80,8 +77,7 @@ public class MatrixAnimater {
         
         rndChars = new ArrayList<RandomCharacters>();
         // What chance do we want of a char generating a randomcharacter?
-        // DISABLED UNTIL FURTHER NOTICE.
-        // REASON: Too CPU intensive (on an Intel Core2 Quad Q6600!!), and sometimes leaves artifacts.
+        // This was too CPU intensive (on an Intel Core2 Quad Q6600!!), and sometimes left artifacts.
 //         for (int r=0; r < inputArray.size(); r++) {
 //             for (int c=0; c < inputArray.get(r).length(); c++) {
 //                 if (1+ randomNumber(99) > 95)
@@ -99,7 +95,7 @@ public class MatrixAnimater {
         // Instantiate the animation management class
         animationManager = new AnimationManager(matrixAnimater);
         animationManager.startProcess();
-        // Use very simple maths to arrange columns of characters. Yay!
+        // Use very simple maths to arrange columns of characters.
         ArrayList<FallingCode> threads = new ArrayList<FallingCode>();      
         for (int col=0; col < width; col++)
             threads.add(new FallingCode(new ArrayList<Character>(getChars(col)), col, matrixAnimater));    
