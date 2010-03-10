@@ -127,7 +127,9 @@ public class Editor extends Executor
 
     public class OpenOperation extends BufferCreationOperation {
         public OpenOperation() { super("open"); }
-        public Buffer createBuffer(String fileName) { return new Buffer(fileName, matrixMode, Util.readFile(fileName)); }
+        public Buffer createBuffer(String fileName) {
+            return new Buffer(fileName, matrixMode, Util.readFile(fileName));
+        }
     }
 
     public class QuitOperation extends Operation {
