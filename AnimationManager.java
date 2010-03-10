@@ -2,7 +2,8 @@ import java.util.*;
 import java.util.concurrent.*;
 
 /**
- * The purpose of this class is to manage animation, and prevent the textarea from getting updated unnecessarily often.
+ * The purpose of this class is to manage animation, and prevent
+ * the textarea from getting updated unnecessarily often.
  */
 public class AnimationManager implements Runnable {
 
